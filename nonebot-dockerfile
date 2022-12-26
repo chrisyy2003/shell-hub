@@ -1,0 +1,14 @@
+FROM python:3.8.16-slim-buster
+
+ENV TZ Asia/Shanghai
+ENV LANG zh_CN.UTF-8
+
+RUN apt update && apt install -y locales locales-all fonts-noto libnss3-dev libxss1 libasound2 libxrandr2 libatk1.0-0 libgtk-3-0 libgbm-dev libxshmfence1
+
+RUN pip3 config set global.index-url https://mirrors.cloud.tencent.com/pypi/simple && \
+    pip3 install nonebot2 nonebot-adapter-onebot nonebot-plugin-gpt3 playwright -U && \
+    playwright install
+
+EXPOSE 8080
+
+
